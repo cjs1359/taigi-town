@@ -3,6 +3,7 @@ import {
   createNewGame, hydrateGame, placeAt, monthTick, tryCompleteTask,
   refreshStats, buildingsData, tasksData, activitiesData, wordsData,
   wordById, facilityInfo, activitiesForFacility, listActivities, costOf, learnWord,
+  seedDemoTown,
 } from './engine/game.js';
 import { listSlots, saveToSlot, loadFromSlot, exportCode, importCode } from './engine/save.js';
 import { DIFFICULTIES } from './engine/tasks.js';
@@ -221,6 +222,12 @@ function startPlay() {
   bindMap(canvas);
   scheduleTicks();
   requestAnimationFrame(loop);
+  window.__taigiTown = {
+    getState: () => state,
+    seedDemo: () => { seedDemoTown(state); updateStats(); setMsg(state.message); },
+    placeAt: (x,y,tool) => { if (tool) state.tool = tool; const r = placeAt(state,x,y); updateStats(); return r; },
+    openCard: (x,y) => { state.selected = { x, y }; openCard(x, y); },
+  };
 }
 
 function onResize() {
@@ -233,6 +240,12 @@ function loop() {
   if (!state || !renderer) return;
   renderer.draw(state);
   requestAnimationFrame(loop);
+  window.__taigiTown = {
+    getState: () => state,
+    seedDemo: () => { seedDemoTown(state); updateStats(); setMsg(state.message); },
+    placeAt: (x,y,tool) => { if (tool) state.tool = tool; const r = placeAt(state,x,y); updateStats(); return r; },
+    openCard: (x,y) => { state.selected = { x, y }; openCard(x, y); },
+  };
 }
 
 function bindMap(canvas) {

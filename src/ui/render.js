@@ -109,7 +109,7 @@ export function createRenderer(canvas) {
       ctx.restore();
       return;
     }
-    const h = (6 + level * 10) * cam.scale;
+    const h = (10 + level * 14) * cam.scale;
     const top = shade(base, 20 + level * 5);
     const left = shade(base, -15);
     const right = shade(base, -5);
@@ -133,12 +133,12 @@ export function createRenderer(canvas) {
     ctx.fillText(String(level), sx, sy + th * 0.42);
   }
 
-  function drawFacility(sx, sy, tw, th, facilityId) {
+  function drawFacility(sx, sy, tw, th, facilityId, showLabel = false) {
     const fac = buildingsData.facilities[facilityId];
     const color = fac?.color || '#cf704d';
     drawDiamond(ctx, sx, sy, tw, th, shade(color, 45), null);
-    const h = 18 * cam.scale;
-    drawBlock(ctx, sx, sy, tw * 0.85, th * 0.85, h, shade(color, 25), shade(color, -20), shade(color, -8));
+    const h = 26 * cam.scale;
+    drawBlock(ctx, sx, sy, tw * 0.9, th * 0.9, h, shade(color, 25), shade(color, -20), shade(color, -8));
     // roof accent
     ctx.beginPath();
     ctx.moveTo(sx, sy - h - th * 0.35);
@@ -148,26 +148,27 @@ export function createRenderer(canvas) {
     ctx.closePath();
     ctx.fillStyle = shade(color, -30);
     ctx.fill();
-    // label below tile so it never covers the building body much
-    const label = fac?.hanji || facilityId;
-    ctx.font = `600 ${Math.max(10, 11 * cam.scale)}px "Noto Sans TC", sans-serif`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'top';
-    const padX = 6 * cam.scale;
-    const padY = 2 * cam.scale;
-    const textW = ctx.measureText(label).width;
-    const bx = sx - textW / 2 - padX;
-    const by = sy + th * 0.38;
-    const bw = textW + padX * 2;
-    const bh = 14 * cam.scale + padY;
-    ctx.fillStyle = 'rgba(255,252,244,0.92)';
-    ctx.strokeStyle = 'rgba(38,62,56,0.18)';
-    ctx.lineWidth = 1;
-    roundRect(ctx, bx, by, bw, bh, 8 * cam.scale);
-    ctx.fill();
-    ctx.stroke();
-    ctx.fillStyle = '#263e38';
-    ctx.fillText(label, sx, by + padY + 1);
+    if (showLabel) {
+      const label = fac?.hanji || facilityId;
+      ctx.font = `600 ${Math.max(10, 11 * cam.scale)}px "Noto Sans TC", sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      const padX = 6 * cam.scale;
+      const padY = 2 * cam.scale;
+      const textW = ctx.measureText(label).width;
+      const bx = sx - textW / 2 - padX;
+      const by = sy + th * 0.38;
+      const bw = textW + padX * 2;
+      const bh = 14 * cam.scale + padY;
+      ctx.fillStyle = 'rgba(255,252,244,0.95)';
+      ctx.strokeStyle = 'rgba(38,62,56,0.2)';
+      ctx.lineWidth = 1;
+      roundRect(ctx, bx, by, bw, bh, 8 * cam.scale);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#263e38';
+      ctx.fillText(label, sx, by + padY + 1);
+    }
   }
 
   function roundRect(ctx, x, y, w, h, r) {
@@ -205,7 +206,11 @@ export function createRenderer(canvas) {
 
         if (cell.kind === 'road') drawRoad(sx, sy, tw, th);
         else if (cell.kind === 'zone') drawZone(sx, sy, tw, th, cell.zone, cell.level);
-        else if (cell.kind === 'facility') drawFacility(sx, sy, tw, th, cell.facility);
+        else if (cell.kind === 'facility') {
+          const showLabel = (cam.hover && cam.hover.x === x && cam.hover.y === y)
+            || (state.selected && state.selected.x === x && state.selected.y === y);
+          drawFacility(sx, sy, tw, th, cell.facility, showLabel);
+        }
 
         if (cam.hover && cam.hover.x === x && cam.hover.y === y) {
           drawDiamond(ctx, sx, sy, tw, th, COLORS.hover, 'rgba(207,112,77,0.8)');

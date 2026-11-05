@@ -265,3 +265,70 @@ export function listActivities(teacherMode) {
 }
 
 export { SIZE, START_MONEY };
+
+/** Build a pleasant demo town for screenshots / QA (mutates state). */
+export function seedDemoTown(state) {
+  const cells = state.cells;
+  // clear non-starter
+  for (const row of cells) {
+    for (const c of row) {
+      if (c.facility === 'station' || c.facility === 'study-center') continue;
+      if (c.kind === 'road' && c.y === 11 && c.x >= 4 && c.x <= 11) continue;
+      c.kind = 'empty'; c.zone = null; c.level = 0; c.facility = null; c.growth = 0;
+      if (c.terrain !== 'water' && c.terrain !== 'hill') c.terrain = 'grass';
+    }
+  }
+  // road network
+  const roads = [];
+  for (let x = 4; x <= 18; x++) roads.push([x, 11]);
+  for (let y = 5; y <= 17; y++) roads.push([11, y]);
+  for (let x = 7; x <= 15; x++) roads.push([x, 7]);
+  for (let x = 7; x <= 15; x++) roads.push([x, 15]);
+  for (let y = 7; y <= 15; y++) roads.push([7, y], [15, y]);
+  for (const [x, y] of roads) {
+    const c = cells[y][x];
+    if (c.terrain === 'water' || c.terrain === 'hill') continue;
+    if (c.facility === 'station') continue;
+    c.kind = 'road'; c.zone = null; c.facility = null; c.level = 0;
+  }
+  // zones with levels
+  const res = [[10,10],[10,12],[12,10],[12,12],[9,10],[9,12],[10,9],[12,9],[10,13],[12,13],[8,10],[8,12],[13,10],[13,12]];
+  res.forEach(([x,y], i) => {
+    const c = cells[y][x]; if (c.kind !== 'empty') return;
+    c.kind = 'zone'; c.zone = 'residential'; c.level = i < 4 ? 3 : i < 9 ? 2 : 1;
+  });
+  const com = [[10,8],[12,8],[8,8],[14,8],[10,14],[12,14],[8,14],[14,14]];
+  com.forEach(([x,y], i) => {
+    const c = cells[y][x]; if (c.kind !== 'empty') return;
+    c.kind = 'zone'; c.zone = 'commercial'; c.level = i < 3 ? 3 : i < 6 ? 2 : 1;
+  });
+  const ind = [[14,10],[14,12],[16,10],[16,12],[15,9],[15,13]];
+  ind.forEach(([x,y], i) => {
+    const c = cells[y][x]; if (c.kind !== 'empty') return;
+    c.kind = 'zone'; c.zone = 'industrial'; c.level = i < 2 ? 3 : i < 4 ? 2 : 1;
+  });
+  const facs = [
+    [10,7,'market'],[12,7,'school'],[8,11,'temple'],[14,11,'hospital'],
+    [11,10,'inn'],[9,7,'breakfast'],[7,11,'mood-park'],[15,11,'amusement'],
+    [11,15,'park'],[13,15,'industry-street'],[7,7,'weather'],[15,7,'police'],
+    [7,15,'home-hall'],
+  ];
+  for (const [x,y,fid] of facs) {
+    const c = cells[y][x];
+    if (!c || c.terrain === 'water') continue;
+    c.kind = 'facility'; c.facility = fid; c.zone = null; c.level = 0;
+  }
+  // reclaim road under station
+  cells[11][11].kind = 'facility'; cells[11][11].facility = 'station';
+  state.money = 3500;
+  state.month = 36;
+  state.paused = true;
+  // claim some bonuses
+  for (const a of activitiesData) {
+    if (a.buildingId && a.bonus && !state.claimedBonuses.includes(a.id)) state.claimedBonuses.push(a.id);
+  }
+  state.completedTasks = tasksData.slice(0, 12).map((t) => t.id);
+  refreshStats(state);
+  state.message = '示範庄頭已就緒，繼續蓋你的台語小庄頭！';
+  return state;
+}
