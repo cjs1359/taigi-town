@@ -8,7 +8,7 @@ import {
 import { listSlots, saveToSlot, loadFromSlot, exportCode, importCode } from './engine/save.js';
 import { DIFFICULTIES } from './engine/tasks.js';
 import { createRenderer } from './ui/render.js';
-import { cardIllustration, listSpriteKeys, getZoneSprite, getFacilitySprite, ANCHOR_Y, SPRITE_W, PAINT_TW, PAINT_TH } from './ui/sprites.js';
+import { cardIllustration, listSpriteKeys, getZoneSprite, getFacilitySprite, clearSpriteCache, ANCHOR_Y, SPRITE_W, PAINT_TW, PAINT_TH } from './ui/sprites.js';
 
 /** QA: every building sprite must stay inside its own tile footprint (no overlap with neighbours). */
 function checkSpriteFootprints() {
@@ -258,6 +258,8 @@ function startPlay() {
     },
     getRenderer: () => renderer,
     checkSpriteFootprints,
+    getFacilitySprite,
+    clearSpriteCache,
   };
 }
 
@@ -285,6 +287,8 @@ function loop() {
     },
     getRenderer: () => renderer,
     checkSpriteFootprints,
+    getFacilitySprite,
+    clearSpriteCache,
   };
 }
 

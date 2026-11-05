@@ -390,46 +390,242 @@ function paintStation(ctx, sx, sy, tw, th) {
   label(ctx, sx + bw * 0.22, sy - 4 + bh * 0.05, '車頭');
 }
 
-function paintTemple(ctx, sx, sy, tw, th) {
-  // 孔廟-like: red enclosing wall, courtyard, hall with swallowtail roof
-  lot(ctx, sx, sy, tw, th, '#e6dccb');
-  // courtyard wall (low)
-  const wf = 0.9;
-  box(ctx, sx, sy, tw, th, wf, 8, '#b84a3a', 0, '#d9cdb5');
-  drawDiamond(ctx, sx, sy - 8, tw * wf * 0.86, th * wf * 0.86, '#e8dcc2', null);
-  // big old tree in courtyard corner
-  drawTree(ctx, sx - tw * 0.24, sy - 10, 0.9, 0);
-  // main hall on a stone base
-  const h = 22;
-  const hall = box(ctx, sx + 4, sy - 8, tw, th, 0.5, h, '#c4523f');
-  face(ctx, 'R', sx + 4, sy - 8, hall.bw, hall.bh, (c) => {
-    fr(c, 0.15, 0, 0.7, 14, '#8d3a2c');
-    for (let i = 0; i < 4; i++) fr(c, 0.17 + i * 0.22, 0, 0.04, 16, '#e8c97a');
-  });
-  // swallowtail roof
-  const ry = sy - 8 - h;
-  const ax = hall.bw / 2 + 6, ay = hall.bh / 2 + 3;
-  ctx.fillStyle = '#9b3b2e';
-  ctx.beginPath();
-  ctx.moveTo(sx + 4 - ax, ry); ctx.lineTo(sx + 4, ry - ay - 8); ctx.lineTo(sx + 4 + ax, ry);
-  ctx.lineTo(sx + 4, ry + ay); ctx.closePath(); ctx.fill();
-  ctx.fillStyle = '#c4523f';
-  ctx.beginPath();
-  ctx.moveTo(sx + 4 - ax, ry); ctx.lineTo(sx + 4, ry - ay - 8); ctx.lineTo(sx + 4, ry + ay); ctx.closePath(); ctx.fill();
-  // curved ridge with swallowtails
-  ctx.strokeStyle = '#7a2c22'; ctx.lineWidth = 2.2;
-  ctx.beginPath();
-  ctx.moveTo(sx + 4 - ax * 0.75, ry - ay * 0.45 - 12);
-  ctx.quadraticCurveTo(sx + 4, ry - ay - 4, sx + 4 + ax * 0.75, ry - ay * 0.1 - 12 + ay * 0.1);
-  ctx.stroke();
-  ctx.fillStyle = '#e8c97a';
-  for (const s of [-1, 1]) {
-    const x = sx + 4 + s * ax * 0.75, y = ry - ay * (s < 0 ? 0.45 : 0.1) - 12;
-    ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + s * 5, y - 6); ctx.lineTo(x + s * 2, y + 1); ctx.closePath(); ctx.fill();
+/** 重簷燕尾脊 roof — dark tiles, gold ridge, upswept swallowtail tips (孔廟 signature). */
+function swallowRoof(ctx, sx, sy, bw, bh, h, {
+  col = '#4a4038', rise = 11, tips = 9, gold = '#f0d078', double = false, tower = true,
+} = {}) {
+  const top = sy - h;
+  const ov = 5;
+  const ax = bw / 2 + ov, ay = bh / 2 + ov / 2;
+  const N = [sx, top - ay], E = [sx + ax, top], S = [sx, top + ay], W = [sx - ax, top];
+  const poly = (pts, c) => {
+    ctx.beginPath(); ctx.moveTo(...pts[0]); for (const p of pts.slice(1)) ctx.lineTo(...p);
+    ctx.closePath(); ctx.fillStyle = c; ctx.fill();
+  };
+  // lower eave (outer) — flat-ish hip
+  const lowRise = Math.max(4, rise * 0.4);
+  const lr1 = [sx - ax * 0.2, top - lowRise - ay * 0.08];
+  const lr2 = [sx + ax * 0.2, top - lowRise + ay * 0.08];
+  poly([N, E, lr2, lr1], shade(col, 6));
+  poly([W, N, lr1], shade(col, 14));
+  poly([W, S, lr2, lr1], shade(col, -10));
+  poly([S, E, lr2], shade(col, -26));
+  // tile courses
+  ctx.strokeStyle = 'rgba(255,240,220,0.2)'; ctx.lineWidth = 0.7;
+  for (let i = 1; i < 5; i++) {
+    const t = i / 5;
+    ctx.beginPath();
+    ctx.moveTo(W[0] + (lr1[0] - W[0]) * t, W[1] + (lr1[1] - W[1]) * t);
+    ctx.lineTo(S[0] + (lr2[0] - S[0]) * t, S[1] + (lr2[1] - S[1]) * t);
+    ctx.stroke();
   }
-  // incense burner
-  ctx.fillStyle = '#7a6a4a'; ctx.fillRect(sx - 4, sy + 2, 6, 4);
-  ctx.fillStyle = 'rgba(200,200,200,0.5)'; ctx.beginPath(); ctx.arc(sx - 1, sy - 2, 2.4, 0, Math.PI * 2); ctx.fill();
+  // eave underside trim (warm wood)
+  ctx.strokeStyle = '#a87848'; ctx.lineWidth = 1.4;
+  ctx.beginPath(); ctx.moveTo(...W); ctx.lineTo(...S); ctx.lineTo(...E); ctx.stroke();
+
+  if (double) {
+    // vertical gap so 重簷 reads clearly
+    const lift = lowRise + 6;
+    const uax = ax * 0.7, uay = ay * 0.7;
+    const uTop = top - lift;
+    const uN = [sx, uTop - uay], uE = [sx + uax, uTop], uS = [sx, uTop + uay], uW = [sx - uax, uTop];
+    // red wall band between eaves (visible 重簷 gap)
+    ctx.fillStyle = '#c4523f';
+    ctx.beginPath();
+    ctx.moveTo(sx - uax * 0.85, uTop + 2);
+    ctx.lineTo(sx + uax * 0.85, uTop + 2);
+    ctx.lineTo(sx + ax * 0.55, top - lowRise - 1);
+    ctx.lineTo(sx - ax * 0.55, top - lowRise - 1);
+    ctx.closePath(); ctx.fill();
+    const urise = rise + 2;
+    const ur1 = [sx - uax * 0.22, uTop - urise - uay * 0.1];
+    const ur2 = [sx + uax * 0.22, uTop - urise + uay * 0.1];
+    poly([uN, uE, ur2, ur1], shade(col, 10));
+    poly([uW, uN, ur1], shade(col, 18));
+    poly([uW, uS, ur2, ur1], shade(col, -6));
+    poly([uS, uE, ur2], shade(col, -22));
+    ctx.strokeStyle = '#a87848'; ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.moveTo(...uW); ctx.lineTo(...uS); ctx.lineTo(...uE); ctx.stroke();
+    drawSwallowRidge(ctx, sx, uTop, uax, uay, urise, tips + 2, gold, tower);
+  } else {
+    drawSwallowRidge(ctx, sx, top, ax, ay, rise, tips, gold, tower);
+  }
+}
+
+function drawSwallowRidge(ctx, sx, top, ax, ay, rise, tips, gold, tower) {
+  const r1 = [sx - ax * 0.22, top - rise - ay * 0.1];
+  const r2 = [sx + ax * 0.22, top - rise + ay * 0.1];
+  // dark ridge beam
+  ctx.strokeStyle = '#2a2420'; ctx.lineWidth = 2.8; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(...r1); ctx.lineTo(...r2); ctx.stroke();
+  // gold overlay ridge
+  ctx.strokeStyle = gold; ctx.lineWidth = 1.4;
+  ctx.beginPath(); ctx.moveTo(...r1); ctx.lineTo(...r2); ctx.stroke();
+
+  // dramatically upswept 燕尾 tips
+  const tipL = [sx - ax * 1.05, top - ay * 0.02 - tips];
+  const tipR = [sx + ax * 1.05, top + ay * 0.02 - tips];
+  const midL = [sx - ax * 0.58, top - rise * 0.45 - ay * 0.08];
+  const midR = [sx + ax * 0.58, top - rise * 0.45 + ay * 0.08];
+  ctx.strokeStyle = '#1e1a16'; ctx.lineWidth = 3.0;
+  ctx.beginPath();
+  ctx.moveTo(tipL[0], tipL[1]);
+  ctx.quadraticCurveTo(midL[0] - 2, midL[1] - 6, r1[0], r1[1]);
+  ctx.lineTo(r2[0], r2[1]);
+  ctx.quadraticCurveTo(midR[0] + 2, midR[1] - 6, tipR[0], tipR[1]);
+  ctx.stroke();
+  // cream/gold tip fins
+  for (const [tip, dir] of [[tipL, -1], [tipR, 1]]) {
+    ctx.fillStyle = gold;
+    ctx.beginPath();
+    ctx.moveTo(tip[0], tip[1] - 1);
+    ctx.lineTo(tip[0] + dir * 5, tip[1] + 3);
+    ctx.lineTo(tip[0] + dir * 1.5, tip[1] + 9);
+    ctx.lineTo(tip[0] - dir * 2.5, tip[1] + 4);
+    ctx.closePath(); ctx.fill();
+    ctx.fillStyle = '#5f9a6a';
+    ctx.beginPath();
+    ctx.moveTo(tip[0], tip[1] + 2);
+    ctx.lineTo(tip[0] + dir * 3, tip[1] + 4);
+    ctx.lineTo(tip[0] + dir * 0.5, tip[1] + 8);
+    ctx.closePath(); ctx.fill();
+  }
+  // 通天筒 / 寶塔 ridge ornament
+  if (tower) {
+    const cx = (r1[0] + r2[0]) / 2, cy = (r1[1] + r2[1]) / 2 - 1;
+    ctx.fillStyle = gold;
+    ctx.fillRect(cx - 2, cy - 11, 4, 11);
+    ctx.beginPath();
+    ctx.moveTo(cx - 5, cy - 11); ctx.lineTo(cx, cy - 18); ctx.lineTo(cx + 5, cy - 11);
+    ctx.closePath(); ctx.fill();
+    ctx.fillStyle = '#5f9a6a';
+    ctx.fillRect(cx - 3, cy - 8, 6, 1.8);
+    ctx.fillRect(cx - 2.5, cy - 5, 5, 1.5);
+    // twin 通天筒
+    for (const dx of [-7, 7]) {
+      ctx.fillStyle = '#e8e0c8';
+      ctx.fillRect(cx + dx - 1.2, cy - 7, 2.4, 7);
+      ctx.fillStyle = gold;
+      ctx.beginPath(); ctx.arc(cx + dx, cy - 8, 1.8, 0, Math.PI * 2); ctx.fill();
+    }
+  }
+}
+
+function paintTemple(ctx, sx, sy, tw, th) {
+  // 臺南孔廟 inspired compound in ONE tile:
+  // cream courtyard, red 宮牆, front 大成門, raised 大成殿 with 重簷燕尾脊.
+  lot(ctx, sx, sy, tw, th, '#ebe1cc');
+  shadow(ctx, sx, sy, tw, th, 0.84, 0.12);
+
+  const WALL = '#c4523f';
+  const WALL_DK = '#9b3b2e';
+  const GOLD = '#f0d078';
+
+  // low red enclosing wall — perimeter only, open cream courtyard
+  const wf = 0.84;
+  // draw wall as a hollow ring: outer box then punch courtyard
+  box(ctx, sx, sy, tw, th, wf, 6, WALL, 0, WALL);
+  drawDiamond(ctx, sx, sy - 6, tw * wf * 0.78, th * wf * 0.78, '#ebe1cc', null);
+  // cream coping on wall top edge
+  ctx.strokeStyle = GOLD; ctx.lineWidth = 1.2;
+  const wax = tw * wf / 2, way = th * wf / 2;
+  ctx.beginPath();
+  ctx.moveTo(sx, sy - 6 - way); ctx.lineTo(sx + wax, sy - 6);
+  ctx.lineTo(sx, sy - 6 + way); ctx.lineTo(sx - wax, sy - 6); ctx.closePath();
+  ctx.stroke();
+
+  // old tree in back-left courtyard corner
+  drawTree(ctx, sx - tw * 0.2, sy - 16, 0.68, 2);
+
+  // raised stone 臺基 under the hall
+  const plat = 0.55;
+  drawDiamond(ctx, sx + 3, sy - 11, tw * plat, th * plat, '#cfc3ad', 'rgba(38,62,56,0.2)');
+  drawDiamond(ctx, sx + 3, sy - 13, tw * plat * 0.9, th * plat * 0.9, '#e4d9c4', null);
+  // front steps onto platform
+  ctx.fillStyle = '#d8cdb8';
+  ctx.beginPath();
+  ctx.moveTo(sx + 3 - 10, sy - 3); ctx.lineTo(sx + 3 + 10, sy - 3);
+  ctx.lineTo(sx + 3 + 7, sy + 5); ctx.lineTo(sx + 3 - 7, sy + 5);
+  ctx.closePath(); ctx.fill();
+  ctx.strokeStyle = 'rgba(38,62,56,0.25)'; ctx.lineWidth = 0.8; ctx.stroke();
+
+  // front gate 大成門 — sits clearly in front, own swallowtail roof
+  const gx = sx - 12, gy = sy + 8;
+  const gate = box(ctx, gx, gy, tw, th, 0.3, 13, WALL);
+  face(ctx, 'R', gx, gy, gate.bw, gate.bh, (c) => {
+    fr(c, 0.12, 0, 0.76, 11, '#5a241c');
+    // twin doors
+    fr(c, 0.2, 0, 0.28, 10, '#7a3428');
+    fr(c, 0.52, 0, 0.28, 10, '#7a3428');
+    for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) {
+      fr(c, 0.26 + i * 0.08, 2 + j * 2.2, 0.035, 0.8, GOLD);
+      fr(c, 0.58 + i * 0.08, 2 + j * 2.2, 0.035, 0.8, GOLD);
+    }
+    fr(c, 0.22, 10.5, 0.56, 1.8, GOLD);
+  });
+  face(ctx, 'L', gx, gy, gate.bw, gate.bh, (c) => {
+    fr(c, 0.15, 0, 0.08, 12, GOLD);
+    fr(c, 0.75, 0, 0.08, 12, GOLD);
+    fr(c, 0.3, 5, 0.4, 3.5, '#5a241c');
+  });
+  swallowRoof(ctx, gx, gy, gate.bw, gate.bh, 13, {
+    col: '#3f3830', rise: 7, tips: 8, gold: GOLD, double: false, tower: false,
+  });
+
+  // main hall 大成殿
+  const hx = sx + 5, hy = sy - 13;
+  const hh = 26;
+  const hall = box(ctx, hx, hy, tw, th, 0.48, hh, WALL);
+  face(ctx, 'L', hx, hy, hall.bw, hall.bh, (c) => {
+    band(c, 0, WALL_DK, 1.6);
+    for (let i = 0; i < 3; i++) fr(c, 0.1 + i * 0.32, 0, 0.08, hh - 2, GOLD);
+    fr(c, 0.22, 5, 0.56, 10, '#7a2e24');
+    windowsRow(c, 8, 6, 2, '#3a1814', GOLD, 0.18);
+    band(c, hh - 3, GOLD, 2.2);
+  });
+  face(ctx, 'R', hx, hy, hall.bw, hall.bh, (c) => {
+    fr(c, 0.04, 0, 0.92, hh - 2, '#5a241c');
+    for (let i = 0; i < 4; i++) fr(c, 0.06 + i * 0.24, 0, 0.08, hh - 1, GOLD);
+    // 匾額
+    fr(c, 0.25, hh - 9, 0.5, 5, GOLD);
+    fr(c, 0.3, hh - 8, 0.4, 3, WALL_DK);
+    band(c, 0, WALL_DK, 1.5);
+  });
+
+  // 重簷燕尾脊 — dark roof vs red walls is the key silhouette
+  swallowRoof(ctx, hx, hy, hall.bw, hall.bh, hh, {
+    col: '#3f3830', rise: 11, tips: 12, gold: GOLD, double: true, tower: true,
+  });
+
+  // red lanterns under eaves
+  for (const [lx, ly] of [[hx - hall.bw * 0.38, hy - hh + 5], [hx + hall.bw * 0.3, hy - hh + 7]]) {
+    ctx.strokeStyle = 'rgba(60,40,30,0.5)'; ctx.lineWidth = 0.7;
+    ctx.beginPath(); ctx.moveTo(lx, ly - 5); ctx.lineTo(lx, ly - 1); ctx.stroke();
+    ctx.fillStyle = '#cf704d';
+    ctx.beginPath(); ctx.ellipse(lx, ly + 1, 2.6, 3.4, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = GOLD;
+    ctx.fillRect(lx - 1.8, ly - 2.2, 3.6, 1.5);
+    ctx.fillRect(lx - 1.2, ly + 3.6, 2.4, 1.2);
+  }
+
+  // incense burner in courtyard (front-left of hall)
+  ctx.fillStyle = '#6a5a42';
+  ctx.beginPath();
+  ctx.moveTo(sx - 9, sy + 3); ctx.lineTo(sx - 2, sy + 3); ctx.lineTo(sx - 0.5, sy + 6.5); ctx.lineTo(sx - 10.5, sy + 6.5);
+  ctx.closePath(); ctx.fill();
+  ctx.fillStyle = '#8a7a58'; ctx.fillRect(sx - 8.2, sy + 0.2, 5.8, 3.2);
+  ctx.strokeStyle = 'rgba(190,190,190,0.6)'; ctx.lineWidth = 1.1;
+  ctx.beginPath();
+  ctx.moveTo(sx - 5.5, sy + 0.2);
+  ctx.quadraticCurveTo(sx - 9, sy - 5, sx - 4, sy - 10);
+  ctx.quadraticCurveTo(sx - 1, sy - 13, sx - 3.5, sy - 16);
+  ctx.stroke();
+
+  // greenery by gate
+  ctx.fillStyle = '#5f9a6a';
+  ctx.beginPath(); ctx.ellipse(sx + tw * 0.26, sy + 9, 4.8, 2.3, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = '#f2a7b8';
+  ctx.beginPath(); ctx.arc(sx + tw * 0.26, sy + 7.4, 1.5, 0, Math.PI * 2); ctx.fill();
 }
 
 function paintMarket(ctx, sx, sy, tw, th) {
