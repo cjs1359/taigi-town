@@ -1,0 +1,22 @@
+[
+  {"id":"t01","hanji":"佇車頭邊仔起一間旅社","tailo":"Tī tshia-thâu pinn--á khí tsi̍t king lí-siā","mandarin":"在車站旁邊蓋一間旅社","check":{"type":"nearFacility","facility":"inn","near":"station","radius":3},"reward":150,"words":["tshia-thau","li-sia","ti","pin","khi"]},
+  {"id":"t02","hanji":"起一間市場","tailo":"Khí tsi̍t king tshī-tiûnn","mandarin":"蓋一間市場","check":{"type":"hasFacility","facility":"market"},"reward":120,"words":["tshi-tiunn","khi"]},
+  {"id":"t03","hanji":"起一間廟口","tailo":"Khí tsi̍t king biō-kháu","mandarin":"蓋一間廟口","check":{"type":"hasFacility","facility":"temple"},"reward":120,"words":["bio-khau","khi"]},
+  {"id":"t04","hanji":"起一間學堂","tailo":"Khí tsi̍t king o̍h-tn̂g","mandarin":"蓋一間學堂","check":{"type":"hasFacility","facility":"school"},"reward":140,"words":["oh-tng","khi"]},
+  {"id":"t05","hanji":"起一間病院","tailo":"Khí tsi̍t king pēnn-īnn","mandarin":"蓋一間病院","check":{"type":"hasFacility","facility":"hospital"},"reward":140,"words":["penn-inn","khi"]},
+  {"id":"t06","hanji":"起一間早餐店","tailo":"Khí tsi̍t king tsá-tshan-tiàm","mandarin":"蓋一間早餐店","check":{"type":"hasFacility","facility":"breakfast"},"reward":100,"words":["breakfast-shop","khi"]},
+  {"id":"t07","hanji":"起一間心情公園","tailo":"Khí tsi̍t king sim-tsîng kong-hn̂g","mandarin":"蓋一間心情公園","check":{"type":"hasFacility","facility":"mood-park"},"reward":130,"words":["sim-tsing-kong-hng","khi"]},
+  {"id":"t08","hanji":"起一間遊樂園","tailo":"Khí tsi̍t king iû-lo̍k-hn̂g","mandarin":"蓋一間遊樂園","check":{"type":"hasFacility","facility":"amusement"},"reward":160,"words":["iu-lok-hng","khi"]},
+  {"id":"t09","hanji":"起一間公園","tailo":"Khí tsi̍t king kong-hn̂g","mandarin":"蓋一間公園","check":{"type":"hasFacility","facility":"park"},"reward":80,"words":["kong-hng","khi"]},
+  {"id":"t10","hanji":"起一條百業街","tailo":"Khí tsi̍t tiâu pah-gia̍p-ke","mandarin":"蓋一條百業街","check":{"type":"hasFacility","facility":"industry-street"},"reward":150,"words":["pah-giap","khi"]},
+  {"id":"t11","hanji":"劃十格厝","tailo":"Uē tsa̍p keh tshù","mandarin":"劃出十格住宅區","check":{"type":"zoneCount","zone":"residential","min":10},"reward":100,"words":["tshu"]},
+  {"id":"t12","hanji":"劃八格店頭","tailo":"Uē peh keh tiàm-thâu","mandarin":"劃出八格商業區","check":{"type":"zoneCount","zone":"commercial","min":8},"reward":110,"words":["tiam-thau"]},
+  {"id":"t13","hanji":"劃六格工場","tailo":"Uē la̍k keh kang-tiûnn","mandarin":"劃出六格工業區","check":{"type":"zoneCount","zone":"industrial","min":6},"reward":110,"words":["kang-tiunn"]},
+  {"id":"t14","hanji":"舖二十格路","tailo":"Phōo jī-tsa̍p keh lōo","mandarin":"鋪二十格路","check":{"type":"roadCount","min":20},"reward":90,"words":["loo"]},
+  {"id":"t15","hanji":"厝愛升到二級","tailo":"Tshù ài seng kàu jī kip","mandarin":"讓一間住宅升到2級","check":{"type":"zoneLevel","zone":"residential","minLevel":2},"reward":130,"words":["tshu"]},
+  {"id":"t16","hanji":"厝愛升到三級","tailo":"Tshù ài seng kàu sann kip","mandarin":"讓一間住宅升到3級","check":{"type":"zoneLevel","zone":"residential","minLevel":3},"reward":200,"words":["tshu"]},
+  {"id":"t17","hanji":"店頭愛升到二級","tailo":"Tiàm-thâu ài seng kàu jī kip","mandarin":"讓一間店頭升到2級","check":{"type":"zoneLevel","zone":"commercial","minLevel":2},"reward":140,"words":["tiam-thau"]},
+  {"id":"t18","hanji":"佇市場邊仔劃店頭","tailo":"Tī tshī-tiûnn pinn--á uē tiàm-thâu","mandarin":"在市場旁邊劃商業區","check":{"type":"zoneNearFacility","zone":"commercial","near":"market","radius":2},"reward":120,"words":["tshi-tiunn","tiam-thau","ti","pin"]},
+  {"id":"t19","hanji":"佇學堂邊仔劃厝","tailo":"Tī o̍h-tn̂g pinn--á uē tshù","mandarin":"在學堂旁邊劃住宅區","check":{"type":"zoneNearFacility","zone":"residential","near":"school","radius":2},"reward":120,"words":["oh-tng","tshu","ti","pin"]},
+  {"id":"t20","hanji":"起派出所佮氣象台","tailo":"Khí phài-tshut-sóo kah khì-siōng-tâi","mandarin":"蓋派出所和氣象台","check":{"type":"hasFacilities","facilities":["police","weather"]},"reward":160,"words":["phai-tshut-soo","khi-siong","khi"]}
+]

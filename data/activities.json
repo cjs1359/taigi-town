@@ -1,0 +1,22 @@
+[
+  {"id":"breakfast","name":"早餐點餐島","group":"七課聽說","url":"https://taigi-week-practice.cjs-1359.chatgpt.site/#breakfast","buildingId":"breakfast","bonus":80},
+  {"id":"greeting","name":"招呼自介島","group":"七課聽說","url":"https://taigi-week-practice.cjs-1359.chatgpt.site/#greeting","buildingId":"home-hall","bonus":80,"hubOnly":false},
+  {"id":"family","name":"家人朋友島","group":"七課聽說","url":"https://taigi-week-practice.cjs-1359.chatgpt.site/#family","buildingId":"home-hall","bonus":80},
+  {"id":"market","name":"市場採買島","group":"七課聽說","url":"https://taigi-week-practice.cjs-1359.chatgpt.site/#market","buildingId":"market","bonus":80},
+  {"id":"directions","name":"問路方向島","group":"七課聽說","url":"https://taigi-week-practice.cjs-1359.chatgpt.site/#directions","buildingId":"police","bonus":80},
+  {"id":"transport","name":"搭車出行島","group":"七課聽說","url":"https://taigi-week-practice.cjs-1359.chatgpt.site/#transport","buildingId":"station","bonus":80},
+  {"id":"weather","name":"天氣出門島","group":"七課聽說","url":"https://taigi-week-practice.cjs-1359.chatgpt.site/#weather","buildingId":"weather","bonus":80},
+  {"id":"academy","name":"台語黑熊學院","group":"發音與造句","url":"https://taigi-black-bear-academy.cjs-1359.chatgpt.site","buildingId":"school","bonus":100},
+  {"id":"sentence","name":"台語造句練習","group":"發音與造句","url":"https://cjs-taiyu-sentence.cjs-1359.chatgpt.site","buildingId":"school","bonus":100},
+  {"id":"emotion","name":"情緒學習島","group":"情緒與百業","url":"https://taigi-emotion-class-cjs.cjs-1359.chatgpt.site/","buildingId":"mood-park","bonus":100},
+  {"id":"emotion-practice","name":"情緒練習趣離島","group":"情緒與百業","url":"https://taigi-emotion-fun-cjs-v2.cjs-1359.chatgpt.site/","buildingId":"mood-park","bonus":80},
+  {"id":"industry","name":"百業試煉島","group":"情緒與百業","url":"https://taiwanese-life-dialogue-1101.cjs-1359.chatgpt.site/","buildingId":"industry-street","bonus":100},
+  {"id":"amusement","name":"主題樂園島・生日幻方","group":"遊樂","url":"https://taigi-birthday-magic.cjs-1359.chatgpt.site/","buildingId":"amusement","bonus":80},
+  {"id":"word-bird","name":"台語語詞彈弓鳥","group":"遊樂","url":"https://taigi-word-bird.cjs-1359.chatgpt.site/","buildingId":"amusement","bonus":80},
+  {"id":"winter-play","name":"冬日遊樂小島","group":"遊樂","url":"https://winter-playground-cjs.cjs-1359.chatgpt.site/","buildingId":"amusement","bonus":80},
+  {"id":"life-hub","name":"讀冊人台語生活島（總入口）","group":"生活島","url":"https://taigi-life-islands.cjs-1359.chatgpt.site/","buildingId":null,"bonus":0},
+  {"id":"study-ai","name":"AI 教學實作講堂","group":"進修群島","url":"https://ai-teaching-practice-class.cjs-1359.chatgpt.site/","buildingId":"study-center","bonus":0,"teacherOnly":true},
+  {"id":"study-chatgpt","name":"ChatGPT 學院","group":"進修群島","url":"https://cjs-learning-portfolio.cjs-1359.chatgpt.site/works/chatgpt/","buildingId":"study-center","bonus":0,"teacherOnly":true},
+  {"id":"study-gemini","name":"Gemini 學院","group":"進修群島","url":"https://cjs-learning-portfolio.cjs-1359.chatgpt.site/works/gemini/","buildingId":"study-center","bonus":0,"teacherOnly":true},
+  {"id":"study-image","name":"圖像提示詞教室","group":"進修群島","url":"https://image-prompt-classroom.cjs-1359.chatgpt.site/","buildingId":"study-center","bonus":0,"teacherOnly":true}
+]

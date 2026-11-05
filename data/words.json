@@ -1,0 +1,292 @@
+[
+  {
+    "id": "tshu",
+    "hanji": "厝",
+    "tailo": "tshù",
+    "mandarin": "房子／住宅",
+    "usedIn": "住宅分區",
+    "verified": true,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%8E%9D",
+    "note": "完全符合"
+  },
+  {
+    "id": "tiam-thau",
+    "hanji": "店頭",
+    "tailo": "tiàm-thâu",
+    "mandarin": "商店／店面",
+    "usedIn": "商業分區",
+    "verified": true,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%BA%97%E9%A0%AD",
+    "note": "老師請再確認是否適合當「商業區」通稱"
+  },
+  {
+    "id": "kang-tiunn",
+    "hanji": "工場",
+    "tailo": "kang-tiûnn",
+    "mandarin": "工廠",
+    "usedIn": "工業分區",
+    "verified": true,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%B7%A5%E5%A0%B4",
+    "note": "老師請再確認是否適合當「工業區」通稱"
+  },
+  {
+    "id": "loo",
+    "hanji": "路",
+    "tailo": "lōo",
+    "mandarin": "道路",
+    "usedIn": "鋪路工具",
+    "verified": true,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E8%B7%AF",
+    "note": ""
+  },
+  {
+    "id": "tshi-tiunn",
+    "hanji": "市場",
+    "tailo": "tshī-tiûnn",
+    "mandarin": "市場",
+    "usedIn": "設施",
+    "verified": true,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%B8%82%E5%A0%B4",
+    "note": ""
+  },
+  {
+    "id": "bio-khau",
+    "hanji": "廟口",
+    "tailo": "biō-kháu",
+    "mandarin": "廟前廣場",
+    "usedIn": "設施",
+    "verified": true,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%BB%9F%E5%8F%A3",
+    "note": "辭典有「廟口」"
+  },
+  {
+    "id": "hak-hau",
+    "hanji": "學校",
+    "tailo": "ha̍k-hāu",
+    "mandarin": "學校",
+    "usedIn": "設施（學堂別名）",
+    "verified": true,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%AD%B8%E6%A0%A1",
+    "note": ""
+  },
+  {
+    "id": "oh-tng",
+    "hanji": "學堂",
+    "tailo": "o̍h-tn̂g",
+    "mandarin": "學校（舊稱）",
+    "usedIn": "設施顯示名",
+    "verified": true,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%AD%B8%E5%A0%82",
+    "note": "遊戲中學堂＝學校設施"
+  },
+  {
+    "id": "penn-inn",
+    "hanji": "病院",
+    "tailo": "pēnn-īnn",
+    "mandarin": "醫院",
+    "usedIn": "設施",
+    "verified": true,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E7%97%85%E9%99%A2",
+    "note": "辭典亦有 pīnn-īnn；老師請確認用字"
+  },
+  {
+    "id": "tshia-thau",
+    "hanji": "車頭",
+    "tailo": "tshia-thâu",
+    "mandarin": "車站",
+    "usedIn": "設施（開局已有）",
+    "verified": true,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E8%BB%8A%E9%A0%AD",
+    "note": ""
+  },
+  {
+    "id": "li-sia",
+    "hanji": "旅社",
+    "tailo": "lí-siā",
+    "mandarin": "旅館",
+    "usedIn": "設施",
+    "verified": true,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E6%97%85%E7%A4%BE",
+    "note": "亦有 lú-siā；老師請確認用字"
+  },
+  {
+    "id": "tsa-tshai-tiam",
+    "hanji": "早起店",
+    "tailo": "tsá-khí-tiàm",
+    "mandarin": "早餐店",
+    "usedIn": "設施顯示別名候補",
+    "verified": false,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E6%97%A9",
+    "note": "複合詞；遊戲顯示用「早餐店」華語＋店頭"
+  },
+  {
+    "id": "breakfast-shop",
+    "hanji": "早餐店",
+    "tailo": "tsá-tshan-tiàm",
+    "mandarin": "早餐店",
+    "usedIn": "設施",
+    "verified": false,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E6%97%A9%E9%A4%90",
+    "note": "複合詞待老師確認台羅；暫用 tsá-tshan-tiàm"
+  },
+  {
+    "id": "sim-tsing-kong-hng",
+    "hanji": "心情公園",
+    "tailo": "sim-tsîng kong-hn̂g",
+    "mandarin": "情緒／心情公園",
+    "usedIn": "設施",
+    "verified": false,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%BF%83%E6%83%85",
+    "note": "複合詞；公園＝kong-hn̂g 已核；心情待確認"
+  },
+  {
+    "id": "iu-lok-hng",
+    "hanji": "遊樂園",
+    "tailo": "iû-lo̍k-hn̂g",
+    "mandarin": "遊樂園",
+    "usedIn": "設施",
+    "verified": false,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E9%81%8A%E6%A8%82",
+    "note": "複合詞待確認"
+  },
+  {
+    "id": "kong-hng",
+    "hanji": "公園",
+    "tailo": "kong-hn̂g",
+    "mandarin": "公園",
+    "usedIn": "設施",
+    "verified": true,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%85%AC%E5%9C%92",
+    "note": ""
+  },
+  {
+    "id": "pah-giap",
+    "hanji": "百業",
+    "tailo": "pah-gia̍p",
+    "mandarin": "各行各業",
+    "usedIn": "百業街設施",
+    "verified": false,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E7%99%BE%E6%A5%AD",
+    "note": "複合／書面詞待確認"
+  },
+  {
+    "id": "khi-siong",
+    "hanji": "氣象台",
+    "tailo": "khì-siōng-tâi",
+    "mandarin": "氣象台",
+    "usedIn": "設施",
+    "verified": false,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E6%B0%A3%E8%B1%A1",
+    "note": "複合詞待確認"
+  },
+  {
+    "id": "phai-tshut-soo",
+    "hanji": "派出所",
+    "tailo": "phài-tshut-sóo",
+    "mandarin": "派出所",
+    "usedIn": "設施（問路）",
+    "verified": false,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E6%B4%BE%E5%87%BA%E6%89%80",
+    "note": "複合詞待確認"
+  },
+  {
+    "id": "khoo",
+    "hanji": "箍",
+    "tailo": "khoo",
+    "mandarin": "元（錢）",
+    "usedIn": "貨幣單位",
+    "verified": false,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E7%AE%8F",
+    "note": "常用口語單位；請老師確認是否用「箍」"
+  },
+  {
+    "id": "tsng-thau",
+    "hanji": "庄頭",
+    "tailo": "tsng-thâu",
+    "mandarin": "村子／小鎮",
+    "usedIn": "遊戲名",
+    "verified": false,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%BA%84%E9%A0%AD",
+    "note": "複合詞待確認"
+  },
+  {
+    "id": "khi",
+    "hanji": "起",
+    "tailo": "khí",
+    "mandarin": "蓋／建造",
+    "usedIn": "任務卡用語",
+    "verified": true,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E8%B5%B7",
+    "note": "起厝 khí-tshù 已見辭典"
+  },
+  {
+    "id": "pin",
+    "hanji": "邊仔",
+    "tailo": "pinn--á",
+    "mandarin": "旁邊",
+    "usedIn": "任務卡用語",
+    "verified": false,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E9%82%8A",
+    "note": "邊＝pinn；仔語氣詞"
+  },
+  {
+    "id": "ti",
+    "hanji": "佇",
+    "tailo": "tī",
+    "mandarin": "在",
+    "usedIn": "任務卡用語",
+    "verified": true,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E4%BD%84",
+    "note": ""
+  },
+  {
+    "id": "king",
+    "hanji": "間",
+    "tailo": "king",
+    "mandarin": "間（量詞）",
+    "usedIn": "任務卡用語",
+    "verified": false,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E9%96%93",
+    "note": "量詞用法待確認"
+  },
+  {
+    "id": "ping-tshu",
+    "hanji": "平房",
+    "tailo": "pênn-hông",
+    "mandarin": "平房（1級住宅）",
+    "usedIn": "住宅升級顯示",
+    "verified": false,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%B9%B3%E6%88%BF",
+    "note": "華語借詞，待確認"
+  },
+  {
+    "id": "thau-thinn",
+    "hanji": "透天",
+    "tailo": "thàu-thinn",
+    "mandarin": "透天厝（2級住宅）",
+    "usedIn": "住宅升級顯示",
+    "verified": false,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E9%80%8F%E5%A4%A9",
+    "note": "待確認"
+  },
+  {
+    "id": "kong-u",
+    "hanji": "公寓",
+    "tailo": "kong-ú",
+    "mandarin": "公寓（3級住宅）",
+    "usedIn": "住宅升級顯示",
+    "verified": false,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%85%AC%E5%AF%93",
+    "note": "待確認"
+  },
+  {
+    "id": "gian-sip",
+    "hanji": "研習中心",
+    "tailo": "gián-si̍p tiong-sim",
+    "mandarin": "教師研習中心",
+    "usedIn": "教師模式設施",
+    "verified": false,
+    "sutian": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E7%A0%94%E7%BF%92",
+    "note": "複合詞；僅教師模式"
+  }
+]

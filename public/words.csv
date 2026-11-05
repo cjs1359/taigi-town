@@ -1,0 +1,30 @@
+id,華語,漢字,臺羅,使用處,verified,sutian,備註
+tshu,房子／住宅,厝,tshù,住宅分區,Y,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%8E%9D,完全符合
+tiam-thau,商店／店面,店頭,tiàm-thâu,商業分區,Y,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%BA%97%E9%A0%AD,老師請再確認是否適合當「商業區」通稱
+kang-tiunn,工廠,工場,kang-tiûnn,工業分區,Y,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%B7%A5%E5%A0%B4,老師請再確認是否適合當「工業區」通稱
+loo,道路,路,lōo,鋪路工具,Y,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E8%B7%AF,
+tshi-tiunn,市場,市場,tshī-tiûnn,設施,Y,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%B8%82%E5%A0%B4,
+bio-khau,廟前廣場,廟口,biō-kháu,設施,Y,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%BB%9F%E5%8F%A3,辭典有「廟口」
+hak-hau,學校,學校,ha̍k-hāu,設施（學堂別名）,Y,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%AD%B8%E6%A0%A1,
+oh-tng,學校（舊稱）,學堂,o̍h-tn̂g,設施顯示名,Y,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%AD%B8%E5%A0%82,遊戲中學堂＝學校設施
+penn-inn,醫院,病院,pēnn-īnn,設施,Y,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E7%97%85%E9%99%A2,辭典亦有 pīnn-īnn；老師請確認用字
+tshia-thau,車站,車頭,tshia-thâu,設施（開局已有）,Y,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E8%BB%8A%E9%A0%AD,
+li-sia,旅館,旅社,lí-siā,設施,Y,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E6%97%85%E7%A4%BE,亦有 lú-siā；老師請確認用字
+tsa-tshai-tiam,早餐店,早起店,tsá-khí-tiàm,設施顯示別名候補,N,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E6%97%A9,複合詞；遊戲顯示用「早餐店」華語＋店頭
+breakfast-shop,早餐店,早餐店,tsá-tshan-tiàm,設施,N,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E6%97%A9%E9%A4%90,複合詞待老師確認台羅；暫用 tsá-tshan-tiàm
+sim-tsing-kong-hng,情緒／心情公園,心情公園,sim-tsîng kong-hn̂g,設施,N,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%BF%83%E6%83%85,複合詞；公園＝kong-hn̂g 已核；心情待確認
+iu-lok-hng,遊樂園,遊樂園,iû-lo̍k-hn̂g,設施,N,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E9%81%8A%E6%A8%82,複合詞待確認
+kong-hng,公園,公園,kong-hn̂g,設施,Y,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%85%AC%E5%9C%92,
+pah-giap,各行各業,百業,pah-gia̍p,百業街設施,N,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E7%99%BE%E6%A5%AD,複合／書面詞待確認
+khi-siong,氣象台,氣象台,khì-siōng-tâi,設施,N,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E6%B0%A3%E8%B1%A1,複合詞待確認
+phai-tshut-soo,派出所,派出所,phài-tshut-sóo,設施（問路）,N,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E6%B4%BE%E5%87%BA%E6%89%80,複合詞待確認
+khoo,元（錢）,箍,khoo,貨幣單位,N,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E7%AE%8F,常用口語單位；請老師確認是否用「箍」
+tsng-thau,村子／小鎮,庄頭,tsng-thâu,遊戲名,N,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%BA%84%E9%A0%AD,複合詞待確認
+khi,蓋／建造,起,khí,任務卡用語,Y,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E8%B5%B7,起厝 khí-tshù 已見辭典
+pin,旁邊,邊仔,pinn--á,任務卡用語,N,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E9%82%8A,邊＝pinn；仔語氣詞
+ti,在,佇,tī,任務卡用語,Y,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E4%BD%84,
+king,間（量詞）,間,king,任務卡用語,N,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E9%96%93,量詞用法待確認
+ping-tshu,平房（1級住宅）,平房,pênn-hông,住宅升級顯示,N,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%B9%B3%E6%88%BF,華語借詞，待確認
+thau-thinn,透天厝（2級住宅）,透天,thàu-thinn,住宅升級顯示,N,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E9%80%8F%E5%A4%A9,待確認
+kong-u,公寓（3級住宅）,公寓,kong-ú,住宅升級顯示,N,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E5%85%AC%E5%AF%93,待確認
+gian-sip,教師研習中心,研習中心,gián-si̍p tiong-sim,教師模式設施,N,https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=%E7%A0%94%E7%BF%92,複合詞；僅教師模式

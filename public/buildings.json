@@ -1,0 +1,238 @@
+{
+  "zones": {
+    "residential": {
+      "id": "residential",
+      "wordId": "tshu",
+      "hanji": "厝",
+      "tailo": "tshù",
+      "mandarin": "住宅區",
+      "color": "#7baf7a",
+      "cost": 40,
+      "levels": [
+        {"name":"平房","tailo":"pênn-hông","pop":2,"tax":4},
+        {"name":"透天","tailo":"thàu-thinn","pop":5,"tax":10},
+        {"name":"公寓","tailo":"kong-ú","pop":10,"tax":20}
+      ]
+    },
+    "commercial": {
+      "id": "commercial",
+      "wordId": "tiam-thau",
+      "hanji": "店頭",
+      "tailo": "tiàm-thâu",
+      "mandarin": "商業區",
+      "color": "#6a9cc4",
+      "cost": 60,
+      "levels": [
+        {"name":"小店","tailo":"sió-tiàm","pop":1,"tax":8},
+        {"name":"商店","tailo":"siong-tiàm","pop":2,"tax":16},
+        {"name":"百貨","tailo":"pah-hè","pop":4,"tax":32}
+      ]
+    },
+    "industrial": {
+      "id": "industrial",
+      "wordId": "kang-tiunn",
+      "hanji": "工場",
+      "tailo": "kang-tiûnn",
+      "mandarin": "工業區",
+      "color": "#d4b25a",
+      "cost": 70,
+      "levels": [
+        {"name":"工作室","tailo":"kang-tiûnn","pop":1,"tax":10},
+        {"name":"工場","tailo":"kang-tiûnn","pop":2,"tax":20},
+        {"name":"大工場","tailo":"tuā kang-tiûnn","pop":3,"tax":35}
+      ]
+    }
+  },
+  "road": {
+    "id": "road",
+    "wordId": "loo",
+    "hanji": "路",
+    "tailo": "lōo",
+    "mandarin": "道路",
+    "cost": 20
+  },
+  "facilities": {
+    "station": {
+      "id": "station",
+      "wordId": "tshia-thau",
+      "hanji": "車頭",
+      "tailo": "tshia-thâu",
+      "mandarin": "車站",
+      "cost": 0,
+      "color": "#929fbd",
+      "size": 1,
+      "growthBonus": 1.2,
+      "starter": true,
+      "activityIds": ["transport"]
+    },
+    "market": {
+      "id": "market",
+      "wordId": "tshi-tiunn",
+      "hanji": "市場",
+      "tailo": "tshī-tiûnn",
+      "mandarin": "市場",
+      "cost": 250,
+      "color": "#88a26c",
+      "size": 1,
+      "growthBonus": 1.4,
+      "activityIds": ["market"]
+    },
+    "temple": {
+      "id": "temple",
+      "wordId": "bio-khau",
+      "hanji": "廟口",
+      "tailo": "biō-kháu",
+      "mandarin": "廟口",
+      "cost": 220,
+      "color": "#c58e6a",
+      "size": 1,
+      "growthBonus": 1.3,
+      "activityIds": []
+    },
+    "school": {
+      "id": "school",
+      "wordId": "oh-tng",
+      "hanji": "學堂",
+      "tailo": "o̍h-tn̂g",
+      "mandarin": "學校",
+      "cost": 300,
+      "color": "#638e75",
+      "size": 1,
+      "growthBonus": 1.5,
+      "activityIds": ["academy", "sentence"]
+    },
+    "hospital": {
+      "id": "hospital",
+      "wordId": "penn-inn",
+      "hanji": "病院",
+      "tailo": "pēnn-īnn",
+      "mandarin": "醫院",
+      "cost": 320,
+      "color": "#d07a7a",
+      "size": 1,
+      "growthBonus": 1.35,
+      "activityIds": []
+    },
+    "inn": {
+      "id": "inn",
+      "wordId": "li-sia",
+      "hanji": "旅社",
+      "tailo": "lí-siā",
+      "mandarin": "旅社",
+      "cost": 280,
+      "color": "#9a8fc0",
+      "size": 1,
+      "growthBonus": 1.25,
+      "activityIds": []
+    },
+    "breakfast": {
+      "id": "breakfast",
+      "wordId": "breakfast-shop",
+      "hanji": "早餐店",
+      "tailo": "tsá-tshan-tiàm",
+      "mandarin": "早餐店",
+      "cost": 180,
+      "color": "#dc9569",
+      "size": 1,
+      "growthBonus": 1.2,
+      "activityIds": ["breakfast"]
+    },
+    "mood-park": {
+      "id": "mood-park",
+      "wordId": "sim-tsing-kong-hng",
+      "hanji": "心情公園",
+      "tailo": "sim-tsîng kong-hn̂g",
+      "mandarin": "心情公園",
+      "cost": 260,
+      "color": "#c594a6",
+      "size": 1,
+      "growthBonus": 1.3,
+      "activityIds": ["emotion", "emotion-practice"]
+    },
+    "amusement": {
+      "id": "amusement",
+      "wordId": "iu-lok-hng",
+      "hanji": "遊樂園",
+      "tailo": "iû-lo̍k-hn̂g",
+      "mandarin": "遊樂園",
+      "cost": 400,
+      "color": "#d79a68",
+      "size": 1,
+      "growthBonus": 1.2,
+      "activityIds": ["amusement", "winter-play", "word-bird"]
+    },
+    "park": {
+      "id": "park",
+      "wordId": "kong-hng",
+      "hanji": "公園",
+      "tailo": "kong-hn̂g",
+      "mandarin": "公園",
+      "cost": 150,
+      "color": "#6f9b72",
+      "size": 1,
+      "growthBonus": 1.15,
+      "activityIds": []
+    },
+    "industry-street": {
+      "id": "industry-street",
+      "wordId": "pah-giap",
+      "hanji": "百業街",
+      "tailo": "pah-gia̍p-ke",
+      "mandarin": "百業街",
+      "cost": 350,
+      "color": "#bf956b",
+      "size": 1,
+      "growthBonus": 1.25,
+      "activityIds": ["industry"]
+    },
+    "weather": {
+      "id": "weather",
+      "wordId": "khi-siong",
+      "hanji": "氣象台",
+      "tailo": "khì-siōng-tâi",
+      "mandarin": "氣象台",
+      "cost": 200,
+      "color": "#80aaa0",
+      "size": 1,
+      "growthBonus": 1.1,
+      "activityIds": ["weather"]
+    },
+    "police": {
+      "id": "police",
+      "wordId": "phai-tshut-soo",
+      "hanji": "派出所",
+      "tailo": "phài-tshut-sóo",
+      "mandarin": "派出所",
+      "cost": 220,
+      "color": "#7caaa9",
+      "size": 1,
+      "growthBonus": 1.15,
+      "activityIds": ["directions"]
+    },
+    "home-hall": {
+      "id": "home-hall",
+      "wordId": "tshu",
+      "hanji": "親情館",
+      "tailo": "tshin-tsiâng-kuán",
+      "mandarin": "親情館",
+      "cost": 200,
+      "color": "#c58e9c",
+      "size": 1,
+      "growthBonus": 1.1,
+      "activityIds": ["greeting", "family"]
+    },
+    "study-center": {
+      "id": "study-center",
+      "wordId": "gian-sip",
+      "hanji": "研習中心",
+      "tailo": "gián-si̍p tiong-sim",
+      "mandarin": "教師研習中心",
+      "cost": 0,
+      "color": "#a3af83",
+      "size": 1,
+      "growthBonus": 1.0,
+      "teacherOnly": true,
+      "activityIds": ["study-ai", "study-chatgpt", "study-gemini", "study-image"]
+    }
+  }
+}
