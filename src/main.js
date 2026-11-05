@@ -42,7 +42,7 @@ function showHome() {
         <div class="brand-row">
           <div class="brand-mark" aria-hidden="true">庄</div>
           <div>
-            <div style="font-size:11px;letter-spacing:2px;color:var(--muted)">讀冊人 · 台語小庄頭</div>
+            <div style="font-size:11px;letter-spacing:2px;color:var(--muted)">台語小庄頭 - cjs</div>
             <h1>台語小庄頭</h1>
           </div>
         </div>
