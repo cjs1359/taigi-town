@@ -20,9 +20,23 @@ export function createMap() {
     const row = [];
     for (let x = 0; x < SIZE; x++) {
       const c = emptyCell(x, y);
-      // gentle river across lower-right, hills on edges
-      if ((x + y > 38 && x > 16) || (x > 20 && y > 18)) c.terrain = 'water';
-      if ((x < 2 && y < 4) || (x > 21 && y < 3) || (y === 0 && x > 8 && x < 14)) c.terrain = 'hill';
+      // meandering river in lower-right with a bend
+      const river = (x + y > 36 && x > 14)
+        || (x > 18 && y > 14)
+        || (x === 17 && y > 16)
+        || (x >= 19 && y >= 12 && y <= 14);
+      if (river) c.terrain = 'water';
+      // soft green hills on edges / corners (not grey boxes)
+      if (
+        (x < 2 && y < 5)
+        || (x > 20 && y < 4)
+        || (y === 0 && x > 6 && x < 16)
+        || (x === 0 && y > 6 && y < 12)
+        || (x > 21 && y > 4 && y < 8)
+        || (y === SIZE - 1 && x < 4)
+      ) {
+        if (c.terrain !== 'water') c.terrain = 'hill';
+      }
       row.push(c);
     }
     cells.push(row);

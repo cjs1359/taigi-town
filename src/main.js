@@ -8,6 +8,7 @@ import {
 import { listSlots, saveToSlot, loadFromSlot, exportCode, importCode } from './engine/save.js';
 import { DIFFICULTIES } from './engine/tasks.js';
 import { createRenderer } from './ui/render.js';
+import { cardIllustration } from './ui/sprites.js';
 import {
   unlockAudio, isMuted, setMuted,
   sfxBuild, sfxZone, sfxRoad, sfxCoin, sfxLevel, sfxError, sfxClick,
@@ -224,9 +225,17 @@ function startPlay() {
   requestAnimationFrame(loop);
   window.__taigiTown = {
     getState: () => state,
-    seedDemo: () => { seedDemoTown(state); updateStats(); setMsg(state.message); },
+    seedDemo: () => { seedDemoTown(state); updateStats(); setMsg(state.message); renderer?.draw(state); },
     placeAt: (x,y,tool) => { if (tool) state.tool = tool; const r = placeAt(state,x,y); updateStats(); return r; },
     openCard: (x,y) => { state.selected = { x, y }; openCard(x, y); },
+    zoomTo: (scale, x=11, y=11) => {
+      if (!renderer) return;
+      renderer.cam.scale = scale;
+      const rect = renderer.cam && document.querySelector('#map')?.getBoundingClientRect();
+      if (rect) renderer.centerOn(x, y, rect.width, rect.height);
+      renderer.draw(state);
+    },
+    getRenderer: () => renderer,
   };
 }
 
@@ -240,11 +249,19 @@ function loop() {
   if (!state || !renderer) return;
   renderer.draw(state);
   requestAnimationFrame(loop);
+  // keep API fresh each frame
   window.__taigiTown = {
     getState: () => state,
     seedDemo: () => { seedDemoTown(state); updateStats(); setMsg(state.message); },
     placeAt: (x,y,tool) => { if (tool) state.tool = tool; const r = placeAt(state,x,y); updateStats(); return r; },
     openCard: (x,y) => { state.selected = { x, y }; openCard(x, y); },
+    zoomTo: (scale, x=11, y=11) => {
+      if (!renderer) return;
+      renderer.cam.scale = scale;
+      const rect = document.querySelector('#map')?.getBoundingClientRect();
+      if (rect) renderer.centerOn(x, y, rect.width, rect.height);
+    },
+    getRenderer: () => renderer,
   };
 }
 
@@ -387,19 +404,31 @@ function openCard(x, y) {
     ? `${SUTIAN_SEARCH}${encodeURIComponent(word.hanji)}`
     : 'https://sutian.moe.edu.tw/zh-hant/';
 
+  let illus = '';
+  try {
+    if (cell.kind === 'zone') illus = cardIllustration('zone', cell.zone, null, cell.level || 1);
+    else if (cell.kind === 'facility') illus = cardIllustration('facility', null, cell.facility, 1);
+    else if (cell.kind === 'road') illus = cardIllustration('road');
+  } catch (_) { illus = ''; }
+
   panel.innerHTML = `
     <div class="panel-bar"><span>建築詞卡</span>
       <button class="icon-btn" id="panel-close" aria-label="關閉">×</button>
     </div>
     <div class="panel-body">
-      <h2>${escapeHtml(title)}</h2>
-      ${tailo ? `<p class="tailo">${escapeHtml(tailo)}</p>` : ''}
-      ${mandarin ? `<p class="mandarin">${escapeHtml(mandarin)}</p>` : ''}
+      <div class="card-hero">
+        ${illus ? `<img src="${illus}" alt="" width="84" height="84">` : ''}
+        <div class="meta">
+          <h2>${escapeHtml(title)}</h2>
+          ${tailo ? `<p class="tailo">${escapeHtml(tailo)}</p>` : ''}
+          ${mandarin ? `<p class="mandarin">${escapeHtml(mandarin)}</p>` : ''}
+        </div>
+      </div>
       ${extra}
       <div class="link-row">
         <a href="${sutian}" target="_blank" rel="noopener">查辭典聽發音<span>↗</span></a>
       </div>
-      <p style="font-size:11px">格子 (${x}, ${y})</p>
+      <p style="font-size:12px;color:#5a6b62">格子 (${x}, ${y})</p>
     </div>
   `;
   panel.querySelector('#panel-close').onclick = closePanel;
