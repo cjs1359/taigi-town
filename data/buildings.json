@@ -9,9 +9,24 @@
       "color": "#7baf7a",
       "cost": 40,
       "levels": [
-        {"name":"平房","tailo":"pênn-hông","pop":2,"tax":4},
-        {"name":"透天","tailo":"thàu-thinn","pop":5,"tax":10},
-        {"name":"公寓","tailo":"kong-ú","pop":10,"tax":20}
+        {
+          "name": "平房",
+          "tailo": "pênn-hông",
+          "pop": 2,
+          "tax": 4
+        },
+        {
+          "name": "透天",
+          "tailo": "thàu-thinn",
+          "pop": 5,
+          "tax": 10
+        },
+        {
+          "name": "公寓",
+          "tailo": "kong-ú",
+          "pop": 10,
+          "tax": 20
+        }
       ]
     },
     "commercial": {
@@ -23,9 +38,24 @@
       "color": "#6a9cc4",
       "cost": 60,
       "levels": [
-        {"name":"小店","tailo":"sió-tiàm","pop":1,"tax":8},
-        {"name":"商店","tailo":"siong-tiàm","pop":2,"tax":16},
-        {"name":"百貨","tailo":"pah-hè","pop":4,"tax":32}
+        {
+          "name": "小店",
+          "tailo": "sió-tiàm",
+          "pop": 1,
+          "tax": 8
+        },
+        {
+          "name": "商店",
+          "tailo": "siong-tiàm",
+          "pop": 2,
+          "tax": 16
+        },
+        {
+          "name": "百貨",
+          "tailo": "pah-hè",
+          "pop": 4,
+          "tax": 32
+        }
       ]
     },
     "industrial": {
@@ -37,9 +67,24 @@
       "color": "#d4b25a",
       "cost": 70,
       "levels": [
-        {"name":"工作室","tailo":"kang-tiûnn","pop":1,"tax":10},
-        {"name":"工場","tailo":"kang-tiûnn","pop":2,"tax":20},
-        {"name":"大工場","tailo":"tuā kang-tiûnn","pop":3,"tax":35}
+        {
+          "name": "工作室",
+          "tailo": "kang-tiûnn",
+          "pop": 1,
+          "tax": 10
+        },
+        {
+          "name": "工場",
+          "tailo": "kang-tiûnn",
+          "pop": 2,
+          "tax": 20
+        },
+        {
+          "name": "大工場",
+          "tailo": "tuā kang-tiûnn",
+          "pop": 3,
+          "tax": 35
+        }
       ]
     }
   },
@@ -63,7 +108,9 @@
       "size": 1,
       "growthBonus": 1.2,
       "starter": true,
-      "activityIds": ["transport"]
+      "activityIds": [
+        "transport"
+      ]
     },
     "market": {
       "id": "market",
@@ -75,7 +122,9 @@
       "color": "#88a26c",
       "size": 1,
       "growthBonus": 1.4,
-      "activityIds": ["market"]
+      "activityIds": [
+        "market"
+      ]
     },
     "temple": {
       "id": "temple",
@@ -99,7 +148,10 @@
       "color": "#638e75",
       "size": 1,
       "growthBonus": 1.5,
-      "activityIds": ["academy", "sentence"]
+      "activityIds": [
+        "academy",
+        "sentence"
+      ]
     },
     "hospital": {
       "id": "hospital",
@@ -135,7 +187,9 @@
       "color": "#dc9569",
       "size": 1,
       "growthBonus": 1.2,
-      "activityIds": ["breakfast"]
+      "activityIds": [
+        "breakfast"
+      ]
     },
     "mood-park": {
       "id": "mood-park",
@@ -147,7 +201,10 @@
       "color": "#c594a6",
       "size": 1,
       "growthBonus": 1.3,
-      "activityIds": ["emotion", "emotion-practice"]
+      "activityIds": [
+        "emotion",
+        "emotion-practice"
+      ]
     },
     "amusement": {
       "id": "amusement",
@@ -159,7 +216,11 @@
       "color": "#d79a68",
       "size": 1,
       "growthBonus": 1.2,
-      "activityIds": ["amusement", "winter-play", "word-bird"]
+      "activityIds": [
+        "amusement",
+        "winter-play",
+        "word-bird"
+      ]
     },
     "park": {
       "id": "park",
@@ -183,7 +244,9 @@
       "color": "#bf956b",
       "size": 1,
       "growthBonus": 1.25,
-      "activityIds": ["industry"]
+      "activityIds": [
+        "industry"
+      ]
     },
     "weather": {
       "id": "weather",
@@ -195,7 +258,9 @@
       "color": "#80aaa0",
       "size": 1,
       "growthBonus": 1.1,
-      "activityIds": ["weather"]
+      "activityIds": [
+        "weather"
+      ]
     },
     "police": {
       "id": "police",
@@ -207,7 +272,9 @@
       "color": "#7caaa9",
       "size": 1,
       "growthBonus": 1.15,
-      "activityIds": ["directions"]
+      "activityIds": [
+        "directions"
+      ]
     },
     "home-hall": {
       "id": "home-hall",
@@ -219,7 +286,10 @@
       "color": "#c58e9c",
       "size": 1,
       "growthBonus": 1.1,
-      "activityIds": ["greeting", "family"]
+      "activityIds": [
+        "greeting",
+        "family"
+      ]
     },
     "study-center": {
       "id": "study-center",
@@ -232,7 +302,36 @@
       "size": 1,
       "growthBonus": 1.0,
       "teacherOnly": true,
-      "activityIds": ["study-ai", "study-chatgpt", "study-gemini", "study-image"]
+      "activityIds": [
+        "study-ai",
+        "study-chatgpt",
+        "study-gemini",
+        "study-image"
+      ]
+    },
+    "museum": {
+      "id": "museum",
+      "wordId": "bi-sut-kuan",
+      "hanji": "美術館",
+      "tailo": "bí-su̍t-kuán",
+      "mandarin": "美術館",
+      "cost": 380,
+      "color": "#d8d2c2",
+      "size": 1,
+      "growthBonus": 1.4,
+      "activityIds": []
+    },
+    "roundabout": {
+      "id": "roundabout",
+      "wordId": "inn-khuan",
+      "hanji": "圓環",
+      "tailo": "înn-khuân",
+      "mandarin": "圓環",
+      "cost": 160,
+      "color": "#9cc584",
+      "size": 1,
+      "growthBonus": 1.3,
+      "activityIds": []
     }
   }
 }

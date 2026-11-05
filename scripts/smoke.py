@@ -66,15 +66,16 @@ def main():
         page.evaluate("() => window.__taigiTown.seedDemo()")
         page.wait_for_timeout(500)
         page.screenshot(path=str(OUT / "town_grown.png"))
+        report["footprint_violations"] = page.evaluate("() => window.__taigiTown.checkSpriteFootprints()")
 
         # close-up of varied buildings
-        page.evaluate("() => window.__taigiTown.zoomTo(2.4, 11, 10)")
+        page.evaluate("() => window.__taigiTown.zoomTo(3.6, 9, 9)")
         page.wait_for_timeout(350)
         page.screenshot(path=str(OUT / "closeup.png"))
 
         page.evaluate("""() => {
           window.__taigiTown.zoomTo(2.0, 11, 11);
-          window.__taigiTown.openCard(10, 7);
+          window.__taigiTown.openCard(8, 8);
         }""")
         page.wait_for_timeout(350)
         page.screenshot(path=str(OUT / "card.png"))
@@ -111,7 +112,7 @@ def main():
         ]:
             page = browser.new_page(viewport={"width": w, "height": h})
             start_new(page)
-            page.evaluate("() => { window.__taigiTown.seedDemo(); window.__taigiTown.openCard(10,7); }")
+            page.evaluate("() => { window.__taigiTown.seedDemo(); window.__taigiTown.openCard(8,8); }")
             page.wait_for_timeout(150)
             report["overflow"][name] = overflow_count(page)
             page.close()
@@ -120,6 +121,8 @@ def main():
 
     (OUT / "smoke_report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(report, ensure_ascii=False, indent=2))
+    if report.get("footprint_violations"):
+        raise SystemExit(f"sprite footprint overlap: {report['footprint_violations']}")
     total = sum(len(v) for v in report["overflow"].values())
     if total > 12:
         raise SystemExit(f"too many overflow issues: {total}")

@@ -8,7 +8,28 @@ import {
 import { listSlots, saveToSlot, loadFromSlot, exportCode, importCode } from './engine/save.js';
 import { DIFFICULTIES } from './engine/tasks.js';
 import { createRenderer } from './ui/render.js';
-import { cardIllustration } from './ui/sprites.js';
+import { cardIllustration, listSpriteKeys, getZoneSprite, getFacilitySprite, ANCHOR_Y, SPRITE_W, PAINT_TW, PAINT_TH } from './ui/sprites.js';
+
+/** QA: every building sprite must stay inside its own tile footprint (no overlap with neighbours). */
+function checkSpriteFootprints() {
+  const bad = [];
+  for (const [kind, id, level, v] of listSpriteKeys()) {
+    const c = kind === 'z' ? getZoneSprite(id, level, v) : getFacilitySprite(id, 0);
+    const d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data;
+    let worst = 0;
+    for (let y = 0; y < c.height; y++) {
+      for (let x = 0; x < c.width; x++) {
+        if (d[(y * c.width + x) * 4 + 3] < 90) continue;
+        const dx = Math.abs(x + 0.5 - SPRITE_W / 2) / (PAINT_TW / 2);
+        let m = dx; // horizontal: never wider than the tile
+        if (y >= ANCHOR_Y) m = Math.max(m, dx + (y + 0.5 - ANCHOR_Y) / (PAINT_TH / 2)); // ground: inside diamond
+        if (m > worst) worst = m;
+      }
+    }
+    if (worst > 1.03) bad.push({ sprite: `${kind}:${id}:${level}:${v}`, worst: +worst.toFixed(3) });
+  }
+  return bad;
+}
 import {
   unlockAudio, isMuted, setMuted,
   sfxBuild, sfxZone, sfxRoad, sfxCoin, sfxLevel, sfxError, sfxClick,
@@ -236,6 +257,7 @@ function startPlay() {
       renderer.draw(state);
     },
     getRenderer: () => renderer,
+    checkSpriteFootprints,
   };
 }
 
@@ -262,6 +284,7 @@ function loop() {
       if (rect) renderer.centerOn(x, y, rect.width, rect.height);
     },
     getRenderer: () => renderer,
+    checkSpriteFootprints,
   };
 }
 
@@ -400,6 +423,11 @@ function openCard(x, y) {
     if (word) learnWord(state, word.id);
   }
 
+  if (cell.kind === 'road') {
+    const sakura = wordsData.find((w) => w.id === 'ing-hue');
+    extra += `<div class="card-extra"><p>路邊種<b>櫻花</b>${sakura ? `（${escapeHtml(sakura.tailo)}）` : ''}和<b>阿勃勒</b>（黃金雨）。</p></div>`;
+    if (sakura) learnWord(state, sakura.id);
+  }
   const sutian = word
     ? `${SUTIAN_SEARCH}${encodeURIComponent(word.hanji)}`
     : 'https://sutian.moe.edu.tw/zh-hant/';

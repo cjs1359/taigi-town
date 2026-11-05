@@ -268,58 +268,59 @@ export { SIZE, START_MONEY };
 
 /** Build a pleasant demo town for screenshots / QA (mutates state). */
 export function seedDemoTown(state) {
+  // Tainan-style planned town: central 圓環 with radiating boulevards, 2×2 blocks, generous greens.
   const cells = state.cells;
-  // clear non-starter
   for (const row of cells) {
     for (const c of row) {
-      if (c.facility === 'station' || c.facility === 'study-center') continue;
-      if (c.kind === 'road' && c.y === 11 && c.x >= 4 && c.x <= 11) continue;
+      if (c.facility === 'study-center') continue;
       c.kind = 'empty'; c.zone = null; c.level = 0; c.facility = null; c.growth = 0;
-      if (c.terrain !== 'water' && c.terrain !== 'hill') c.terrain = 'grass';
     }
   }
-  // road network
-  const roads = [];
-  for (let x = 4; x <= 18; x++) roads.push([x, 11]);
-  for (let y = 5; y <= 17; y++) roads.push([11, y]);
-  for (let x = 7; x <= 15; x++) roads.push([x, 7]);
-  for (let x = 7; x <= 15; x++) roads.push([x, 15]);
-  for (let y = 7; y <= 15; y++) roads.push([7, y], [15, y]);
-  for (const [x, y] of roads) {
+  const ok = (x, y) => inBounds(x, y) && cells[y][x].terrain !== 'water' && cells[y][x].kind !== 'facility';
+  const road = (x, y) => {
+    if (!ok(x, y)) return;
     const c = cells[y][x];
-    if (c.terrain === 'water' || c.terrain === 'hill') continue;
-    if (c.facility === 'station') continue;
-    c.kind = 'road'; c.zone = null; c.facility = null; c.level = 0;
+    if (c.terrain === 'hill') c.terrain = 'grass';
+    c.kind = 'road';
+  };
+  for (const L of [4, 7, 13, 16]) {
+    for (let i = 4; i <= 16; i++) { road(L, i); road(i, L); }
   }
-  // zones with levels
-  const res = [[10,10],[10,12],[12,10],[12,12],[9,10],[9,12],[10,9],[12,9],[10,13],[12,13],[8,10],[8,12],[13,10],[13,12]];
-  res.forEach(([x,y], i) => {
-    const c = cells[y][x]; if (c.kind !== 'empty') return;
-    c.kind = 'zone'; c.zone = 'residential'; c.level = i < 4 ? 3 : i < 9 ? 2 : 1;
-  });
-  const com = [[10,8],[12,8],[8,8],[14,8],[10,14],[12,14],[8,14],[14,14]];
-  com.forEach(([x,y], i) => {
-    const c = cells[y][x]; if (c.kind !== 'empty') return;
-    c.kind = 'zone'; c.zone = 'commercial'; c.level = i < 3 ? 3 : i < 6 ? 2 : 1;
-  });
-  const ind = [[14,10],[14,12],[16,10],[16,12],[15,9],[15,13]];
-  ind.forEach(([x,y], i) => {
-    const c = cells[y][x]; if (c.kind !== 'empty') return;
-    c.kind = 'zone'; c.zone = 'industrial'; c.level = i < 2 ? 3 : i < 4 ? 2 : 1;
-  });
-  const facs = [
-    [10,7,'market'],[12,7,'school'],[8,11,'temple'],[14,11,'hospital'],
-    [11,10,'inn'],[9,7,'breakfast'],[7,11,'mood-park'],[15,11,'amusement'],
-    [11,15,'park'],[13,15,'industry-street'],[7,7,'weather'],[15,7,'police'],
-    [7,15,'home-hall'],
-  ];
-  for (const [x,y,fid] of facs) {
+  for (let i = 2; i <= 18; i++) { road(10, i); road(i, 10); }
+  for (let dx = -1; dx <= 1; dx++) for (let dy = -1; dy <= 1; dy++) if (dx || dy) road(10 + dx, 10 + dy);
+  const put = (x, y, what, level = 0) => {
+    if (!inBounds(x, y)) return;
     const c = cells[y][x];
-    if (!c || c.terrain === 'water') continue;
-    c.kind = 'facility'; c.facility = fid; c.zone = null; c.level = 0;
-  }
-  // reclaim road under station
-  cells[11][11].kind = 'facility'; cells[11][11].facility = 'station';
+    if (c.terrain === 'water' || c.kind === 'road') return;
+    if (c.terrain === 'hill') c.terrain = 'grass';
+    if (what.startsWith('fac:')) { c.kind = 'facility'; c.facility = what.slice(4); c.zone = null; c.level = 0; }
+    else { c.kind = 'zone'; c.zone = what; c.level = level; }
+  };
+  cells[10][10].kind = 'empty';
+  cells[10][10].kind = 'empty';
+  put(10, 10, 'fac:roundabout');
+  // civic core around the roundabout
+  put(8, 8, 'fac:museum'); put(9, 8, 'fac:police'); put(8, 9, 'fac:park');
+  put(11, 8, 'commercial', 3); put(12, 8, 'commercial', 2); put(12, 9, 'commercial', 2);
+  put(8, 11, 'fac:mood-park'); put(8, 12, 'fac:temple'); put(9, 12, 'fac:breakfast');
+  put(12, 11, 'commercial', 3); put(11, 12, 'fac:inn'); put(12, 12, 'fac:hospital');
+  // station at the end of the south boulevard
+  put(11, 17, 'fac:station'); put(9, 17, 'fac:park');
+  // outer blocks
+  put(14, 8, 'fac:market'); put(15, 8, 'commercial', 1); put(14, 9, 'commercial', 2); put(15, 9, 'fac:park');
+  put(14, 11, 'fac:industry-street'); put(15, 11, 'commercial', 1); put(14, 12, 'commercial', 2); put(15, 12, 'residential', 2);
+  put(14, 14, 'industrial', 2); put(15, 14, 'industrial', 1); put(14, 15, 'fac:park'); put(15, 15, 'industrial', 3);
+  put(11, 14, 'residential', 2); put(12, 14, 'residential', 3); put(11, 15, 'fac:park'); put(12, 15, 'residential', 1);
+  put(8, 14, 'residential', 3); put(9, 14, 'residential', 2); put(8, 15, 'residential', 1); put(9, 15, 'fac:park');
+  put(5, 14, 'fac:school'); put(6, 14, 'fac:park'); put(5, 15, 'residential', 1); put(6, 15, 'fac:home-hall');
+  put(5, 11, 'residential', 2); put(6, 11, 'residential', 1); put(5, 12, 'fac:park'); put(6, 12, 'residential', 3);
+  put(5, 8, 'residential', 1); put(6, 8, 'residential', 2); put(5, 9, 'residential', 2); put(6, 9, 'fac:park');
+  put(5, 5, 'fac:weather'); put(6, 5, 'residential', 1); put(5, 6, 'fac:park'); put(6, 6, 'residential', 2);
+  put(8, 5, 'residential', 2); put(9, 5, 'residential', 3); put(8, 6, 'fac:park'); put(9, 6, 'residential', 1);
+  put(11, 5, 'residential', 1); put(12, 5, 'fac:park'); put(11, 6, 'residential', 3); put(12, 6, 'residential', 2);
+  put(14, 5, 'fac:amusement'); put(15, 5, 'fac:park'); put(14, 6, 'residential', 2); put(15, 6, 'residential', 1);
+  // riverside park strip
+  for (const [x, y] of [[17, 11], [17, 12], [17, 9], [18, 11]]) put(x, y, 'fac:park');
   state.money = 3500;
   state.month = 36;
   state.paused = true;
